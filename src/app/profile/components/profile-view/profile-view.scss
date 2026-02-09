@@ -1,14 +1,33 @@
 @use '../../scss/common';
 @use '../../scss/data';
 
+$melody-pink: #ffb7d5;
+$kuromi-purple: #9b59b6;
+
 :host {
   @include common.layout-block();
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 ._main-data {
   @include data.layout-data-list();
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  border: 2px solid $melody-pink;
+  box-shadow: 10px 10px 0px $kuromi-purple; // เงาแข็งสไตล์ Kuromi
 }
 
-._autobiography {
-  white-space: pre-wrap;
+dt {
+  color: $kuromi-purple !important;
+  font-weight: bold;
+  border-left: 5px solid $melody-pink;
+  padding-left: 12px;
+  margin-top: 20px;
+}
+
+dd {
+  border-bottom: 1px dashed $melody-pink;
+  padding: 5px 0;
 }

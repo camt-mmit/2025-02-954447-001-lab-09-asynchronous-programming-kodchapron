@@ -1,1 +1,51 @@
-<p>dynamic-section-form works!</p>
+<button type="button" (click)="addSection()" class="app-cmp-button _btn-add-section">
+  <i class="material-symbols-outlined">add</i> Section
+</button>
+
+<div class="_assignment-form-container">
+  @for (section of form; track section; let sIdx = $index) {
+    <fieldset class="_section-group">
+      <div class="_section-header">
+        <button type="button" (click)="addNumber(sIdx)" class="app-cmp-button">
+          <i class="material-symbols-outlined">add</i> Number
+        </button>
+
+        <span>Section {{ sIdx + 1 }}</span>
+
+        <button
+          type="button"
+          (click)="removeSection(sIdx)"
+          class="app-cmp-button app-cl-warn"
+          [disabled]="form().value().length <= 1"
+        >
+          <i class="material-symbols-outlined">delete</i>
+        </button>
+      </div>
+
+      @for (numField of section; track numField; let nIdx = $index) {
+        <div class="_number-row">
+          <label>
+            <b>Number {{ nIdx + 1 }}</b>
+            <input type="number" [formField]="numField" />
+          </label>
+
+          <button
+            type="button"
+            (click)="removeNumber(sIdx, nIdx)"
+            class="app-cmp-button app-cl-warn"
+            [disabled]="section().value().length <= 1"
+          >
+            <i class="material-symbols-outlined">delete</i>
+          </button>
+        </div>
+      }
+
+      <div class="_result-row">
+        <b>Result</b>
+        <span class="app-cl-number">
+          <u>{{ calculateSum(section().value()) | number }}</u>
+        </span>
+      </div>
+    </fieldset>
+  }
+</div>

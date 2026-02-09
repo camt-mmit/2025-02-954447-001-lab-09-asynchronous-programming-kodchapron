@@ -1,1 +1,32 @@
-<p>dynamic-section-view works!</p>
+<div class="_view-page-container">
+  <h2 class="Sections-title">Sections</h2>
+
+  @for (section of data(); track section; let sIdx = $index) {
+    <div class="_view-section-container">
+      <h3 class="_section-title">Section {{ sIdx + 1 }}</h3>
+
+      <div class="_view-data-list">
+        @for (num of section; track $index) {
+          <div class="_view-row">
+            <span class="_label">number {{ $index + 1 }}</span>
+            <span class="_value app-cl-number">{{ num | number }}</span>
+          </div>
+        }
+
+        <div class="_divider"></div>
+
+        <div class="_view-row _result-row">
+          <span class="_label"><b>Result</b></span>
+          <span class="_value app-cl-number">
+            <u class="_double-underline">{{ calculateSum(section) | number }}</u>
+          </span>
+        </div>
+      </div>
+    </div>
+  } @empty {
+    <div class="_no-data">
+      <i class="material-symbols-outlined">warning</i>
+      <h1>Not Found!!!</h1>
+    </div>
+  }
+</div>

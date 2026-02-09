@@ -1,5 +1,54 @@
-@use '../../scss/common';
+$melody-pink: #ffb7d5;
+$melody-light: #fff0f5;
+$kuromi-purple: #9b59b6;
+$kuromi-dark: #2c3e50;
 
-:host {
-  @include common.layout-block();
+.app-cmp-nav {
+  // ปรับแต่งตัวแปรภายใน Layer เพื่อทับสไตล์ระบบ
+  @layer {
+    & {
+      --_color: #{$kuromi-purple};
+      --_border-color: #{$melody-pink};
+      --_filling-color: #{$melody-pink}; // สีชมพู My Melody
+
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  & > li {
+    background-color: white;
+    border: 2px solid $melody-pink !important;
+    border-radius: 12px !important; // มนๆ นุบนิบ
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    // สถานะตอน Hover (Kuromi Mode)
+    &:not(.app-st-active):hover {
+      background-color: $melody-light !important;
+      transform: translateY(-3px);
+    }
+
+    // สถานะที่เลือกอยู่ (Active)
+    &.app-st-active {
+      background-color: $kuromi-purple !important; // เปลี่ยนเป็นม่วง Kuromi
+      border-color: $kuromi-dark !important;
+
+      & > a {
+        color: white !important;
+        font-weight: 800;
+      }
+    }
+
+    & > a {
+      color: $kuromi-purple;
+      padding: 0.5rem 1.5rem !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      i {
+        font-size: 20px;
+      }
+    }
+  }
 }

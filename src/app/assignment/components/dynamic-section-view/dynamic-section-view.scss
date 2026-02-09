@@ -1,0 +1,99 @@
+$melody-pink: #ffb7d5;
+$melody-light: #fff0f5;
+$kuromi-purple: #9b59b6;
+$kuromi-dark: #2c3e50;
+
+.Sections-title {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px 0;
+  background: linear-gradient(45deg, $melody-pink, $kuromi-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+._view-page-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 2px dashed $melody-pink;
+}
+
+._view-section-container {
+  margin-bottom: 40px;
+
+  ._section-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: block;
+    color: $kuromi-purple;
+    border-left: 5px solid $melody-pink;
+    padding-left: 10px;
+  }
+}
+
+._view-data-list {
+  display: flex;
+  flex-direction: column;
+}
+
+._view-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: none;
+
+  ._label {
+    color: $kuromi-dark;
+  }
+
+  ._value {
+    text-align: right;
+    min-width: 100px;
+    color: #444;
+    font-weight: bold;
+  }
+}
+
+._divider {
+  border-bottom: 2px solid $melody-light;
+  margin: 10px 0;
+}
+
+._result-row {
+  ._double-underline {
+    text-decoration: none;
+    border-bottom: 4px double $kuromi-purple;
+    display: inline-block;
+    padding-bottom: 2px;
+    font-weight: bold;
+    min-width: 60px;
+    text-align: right;
+    color: $kuromi-dark;
+  }
+}
+
+._no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: $melody-pink;
+
+  i {
+    font-size: 5rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(2px 2px 0px $kuromi-purple);
+  }
+
+  h1 {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 2rem;
+  }
+}

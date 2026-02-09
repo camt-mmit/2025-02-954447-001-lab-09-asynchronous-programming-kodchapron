@@ -1,73 +1,142 @@
 @use '../../scss/common';
 @use '../../scss/data';
 
+$melody-pink: #ffb7d5;
+$melody-light: #fff0f5;
+$kuromi-purple: #9b59b6;
+$kuromi-dark: #2c3e50;
+
 :host {
   @include common.layout-block();
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 ._main-form {
   @include common.layout-block();
+  background-color: $melody-light; //
+  padding: 25px;
+  border-radius: 20px;
+  border: 2px solid $melody-pink; //
 }
 
 ._info-form {
   @include data.layout-data-form($label-width: 15ch);
-
-  width: 100%;
+  input,
+  textarea {
+    border: 2px solid $melody-pink !important;
+    border-radius: 12px !important;
+    background-color: #fff;
+    &:focus {
+      border-color: $kuromi-purple !important;
+      outline: none;
+    }
+  }
 }
 
 ._friends-form {
-  @layer {
-    & {
-      --_margin-top: var(--app-row-gap);
-      --_legend-column-gap: var(--app-column-gap);
-      --_body-gap: var(--app-row-gap);
-      --_border-color: var(--app-on-surface-color);
+  margin-top: 20px;
+  border: 3px dashed $kuromi-purple; //
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #fff;
+
+  legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $kuromi-purple; //
+    font-weight: bold;
+    font-family: 'Comic Sans MS', cursive;
+
+    // เสกปุ่มเพิ่มเพื่อน (+) ให้เป็นวงกลม Melody
+    .app-cmp-button {
+      background-color: $melody-pink !important;
+      color: white !important;
+      width: 32px;
+      height: 32px;
+      border-radius: 50% !important; //
+      border: 2px solid white !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 !important;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+
+      &:hover {
+        transform: scale(1.2) rotate(90deg);
+        background-color: $kuromi-purple !important; //
+      }
     }
   }
 
-  margin-top: var(--_margin-top);
-  border: 1px solid var(--_border-color);
-
-  & > legend {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    column-gap: var(--_legend-column-gap);
-
-    margin-bottom: var(--_body-gap);
-  }
-
-  & > ._friend-container {
-    @include common.layout-block();
-
+  ._friend-container {
+    background: $melody-light; //
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 10px;
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
+    align-items: center;
+    gap: 10px;
 
-    & > ._friend-input {
-      @include common.layout-block();
+    // ปุ่มลูกศร ขึ้น/ลง (Kuromi Move)
+    .app-cmp-button:not(.app-cl-warn) {
+      background-color: $kuromi-dark !important;
+      color: $melody-pink !important;
+      border: none !important;
+      border-radius: 8px !important;
+      width: 34px;
+      height: 34px;
+      padding: 0 !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &:disabled {
+        opacity: 0.3;
+      }
+      &:hover:not(:disabled) {
+        filter: brightness(1.2);
+        transform: translateY(-2px);
+      }
+    }
+
+    ._friend-input {
+      flex-grow: 1;
       @include data.layout-data-form($label-width: 10ch);
 
-      flex: 1 0 auto;
-
-      & > label {
-        height: 100%;
-
-        & > b {
-          margin-left: 1ch;
-
-          & + * {
-            height: 100%;
-          }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        input {
+          border: 1px solid $melody-pink !important;
         }
       }
     }
 
-    ._friend-title-no {
-      display: inline-block;
-      width: 3ch;
-      padding-left: 1ch;
-      margin-left: auto;
+    // เสกปุ่มลบให้เป็นวงกลม Kuromi เป๊ะๆ
+    .app-cl-warn {
+      background-color: $kuromi-dark !important; //
+      color: $melody-pink !important; //
+      border: none !important;
+      border-radius: 50% !important; //
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 !important;
+
+      i {
+        font-size: 18px !important;
+      }
+
+      &:hover:not(:disabled) {
+        transform: scale(1.1);
+        background-color: #ff4d4d !important;
+        color: white !important;
+      }
     }
   }
 }

@@ -1,0 +1,128 @@
+$melody-pink: #ffb7d5;
+$melody-light: #fff0f5;
+$kuromi-purple: #9b59b6;
+$kuromi-dark: #2c3e50;
+$warn-red: #ff4d4d;
+
+// เพิ่มสไตล์ปุ่มเพิ่ม Section และระยะห่าง
+._btn-add-section {
+  margin-bottom: 25px !important; // เว้นระยะห่างจากกรอบข้างล่าง
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+._assignment-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+  background-color: $melody-light;
+  border-radius: 15px;
+  border: 2px solid $melody-pink;
+}
+
+._section-group {
+  border: 2px solid $kuromi-purple;
+  padding: 18px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px $kuromi-purple;
+
+  ._section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; // จัดปุ่มให้อยู่หัวท้าย
+    margin-bottom: 16px;
+    color: $kuromi-dark;
+
+    span {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-weight: bold;
+    }
+  }
+}
+
+._number-row {
+  display: flex;
+  align-items: center;
+  gap: 10px; // ระยะห่างระหว่าง input กับปุ่มลบ
+  margin-bottom: 12px;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    input {
+      width: 180px;
+      padding: 6px;
+      border: 2px solid $melody-pink;
+      border-radius: 10px;
+      text-align: right;
+      &:focus {
+        outline: none;
+        border-color: $kuromi-purple;
+      }
+    }
+  }
+}
+
+._result-row {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px dashed $melody-pink;
+  display: flex;
+  justify-content: space-between;
+
+  b {
+    color: $kuromi-purple;
+  }
+
+  .app-cl-number {
+    u {
+      text-decoration: none;
+      border-bottom: 4px double $kuromi-purple;
+      padding-bottom: 2px;
+      font-weight: bold;
+    }
+  }
+}
+
+.app-cmp-button {
+  background-color: $melody-pink !important;
+  color: white !important;
+  border-radius: 20px !important;
+  border: none !important;
+  padding: 5px 15px !important;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: darken($melody-pink, 10%) !important;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+}
+
+.app-cl-warn {
+  background-color: $kuromi-dark !important;
+  color: #ffb7d5 !important;
+  border-radius: 50% !important;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $warn-red !important;
+  }
+}

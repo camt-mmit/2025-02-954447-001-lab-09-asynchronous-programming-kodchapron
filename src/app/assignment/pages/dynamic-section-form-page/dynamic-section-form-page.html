@@ -1,1 +1,7 @@
-<p>dynamic-section-form-page works!</p>
+<div class="form-page-container">
+  @if (dataResource.isLoading()) {
+    <div class="loading">Loading...</div>
+  } @else if (dataResource.hasValue()) {
+    <app-dynamic-section-form [(data)]="dataResource.value" />
+  }
+</div>

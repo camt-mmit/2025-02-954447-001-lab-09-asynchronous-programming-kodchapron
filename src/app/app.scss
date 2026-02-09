@@ -1,11 +1,21 @@
 @use '../scss/common';
 
+// 1. เพิ่มตัวแปรสีประจำธีม My Melody x Kuromi
+$melody-pink: #ffb7d5;
+$melody-light: #fff0f5;
+$kuromi-purple: #9b59b6;
+$kuromi-dark: #2c3e50;
+
 :host {
   @layer {
     & {
       --_max-width: 640px;
       --_gap: 8px;
       --_logo-height: 64px;
+
+      // 2. ปรับพื้นหลังแอปให้เป็นชมพูอ่อน My Melody
+      background-color: #{$melody-light};
+      min-height: 100vh;
     }
   }
 
@@ -33,12 +43,22 @@ header {
 
   padding-top: var(--_gap);
 
+  // 3. เพิ่มเส้นประ My Melody ใต้ Header
+  border-bottom: 3px dashed #{$melody-pink};
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+
   h1 {
     margin: 0px;
+    // 4. ปรับสีหัวข้อให้เป็นม่วง Kuromi
+    color: $kuromi-purple;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
   }
 
   .angular-logo {
     max-height: var(--_logo-height);
+    // 5. เพิ่มเงาสีชมพูให้โลโก้
+    filter: drop-shadow(2px 2px 0px $melody-pink);
   }
 }
 
@@ -52,4 +72,66 @@ header {
   align-items: center;
   justify-content: center;
   column-gap: var(--_gap);
+}
+
+// 6. ปรับแต่งปุ่มเมนู (Profile/Assignment) ให้จึ้ง
+.app-cmp-nav {
+  @layer {
+    & {
+      // 1. เพิ่มระยะห่างระหว่างปุ่มให้ดูไม่อึดอัด
+      column-gap: 24px !important;
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      // 2. เอาเส้นกั้นหรือขอบที่ไม่ต้องการออก
+      --_border-style: none !important;
+      border: none !important;
+    }
+  }
+
+  & > li {
+    @include common.layout-block();
+    background-color: white !important;
+    // 3. ปรับทรงปุ่มให้มนกลมแบบตัวแม่ Sanrio
+    border-radius: 30px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+
+    // สถานะตอน Hover: ขยายใหญ่ขึ้นและเปลี่ยนสี
+    &:not(.app-st-active):hover {
+      background-color: $melody-light !important;
+      transform: scale(1.1) translateY(-3px);
+      box-shadow: 0 6px 12px rgba($melody-pink, 0.4);
+    }
+
+    // สถานะที่เลือก (Active): ปุ่มใหญ่และสีชัด
+    &.app-st-active {
+      background-color: $kuromi-purple !important; // เปลี่ยนเป็นม่วง Kuromi
+      transform: scale(1.05);
+
+      & > a {
+        color: white !important;
+        font-weight: 900;
+        i {
+          color: white !important;
+        }
+      }
+    }
+
+    & > a {
+      @include common.layout-block();
+      // 4. ปรับ Padding ให้ปุ่มใหญ่ขึ้นกว่าเดิม
+      padding: 0.8rem 2.5rem !important;
+      font-size: 1.2rem; // เพิ่มขนาดตัวอักษรให้ดูสำคัญ
+      color: $kuromi-purple !important;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      i {
+        font-size: 24px; // ไอคอนก็ต้องใหญ่ตามปุ่มนะคะ
+      }
+    }
+  }
 }
